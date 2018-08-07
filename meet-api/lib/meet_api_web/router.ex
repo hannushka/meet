@@ -7,5 +7,6 @@ defmodule MeetApiWeb.Router do
 
   scope "/api", MeetApiWeb do
     pipe_through :api
+    resources "/users", UserController, except: [:new, :edit]
   end
 end
