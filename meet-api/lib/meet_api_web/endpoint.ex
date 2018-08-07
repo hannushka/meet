@@ -35,6 +35,14 @@ defmodule MeetApiWeb.Endpoint do
     key: "_meet_api_key",
     signing_salt: "Cf7VveeL"
 
+  plug(
+    Corsica,
+    origins: "http://localhost:8080",
+    log: [rejected: :error, invalid: :warn, accepted: :debug],
+    allow_headers: ["content-type"],
+    allow_credentials: true
+  )
+
   plug MeetApiWeb.Router
 
   @doc """
