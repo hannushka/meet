@@ -5,15 +5,15 @@ defmodule MeetApi.Application do
   # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec
-
     # Define workers and child supervisors to be supervised
     children = [
       # Start the Ecto repository
-      supervisor(MeetApi.Repo, []),
+      # supervisor(MeetApi.Repo, []),
       # Start the endpoint when the application starts
       supervisor(MeetApiWeb.Endpoint, []),
       # Start your own worker by calling: MeetApi.Worker.start_link(arg1, arg2, arg3)
       # worker(MeetApi.Worker, [arg1, arg2, arg3]),
+      {Bolt.Sips, Application.get_env(:bolt_sips, Bolt)}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

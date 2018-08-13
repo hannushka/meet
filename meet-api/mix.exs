@@ -40,7 +40,8 @@ defmodule MeetApi.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:corsica, "~> 1.0"},
-      {:bcrypt_elixir, "~> 1.0"}
+      {:bcrypt_elixir, "~> 1.0"},
+      {:bolt_sips, "~> 0.4.12"}
     ]
   end
 
