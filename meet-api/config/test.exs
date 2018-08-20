@@ -9,13 +9,4 @@ config :meet_api, MeetApiWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-# Configure your database
-config :meet_api, MeetApi.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "meet_api_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
-
 config :bcrypt_elixir, :log_rounds, 4
