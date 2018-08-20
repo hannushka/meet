@@ -1,6 +1,6 @@
 # Welcome to Meet!
 
-Social media alternative. 
+Social media alternative. Work in progress.
 
 ## Setup
 
