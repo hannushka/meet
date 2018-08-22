@@ -1,11 +1,32 @@
 defmodule MeetApi.Repo do
+    alias MeetApi.Accounts
 
-    def get_nodes(conn, type) do
+    def create_node(conn, type, props) do
+        props = props
+        |> Map.to_list()
+        |> Enum.map_join(", ", fn {key, value} -> "#{key}: '#{value}'" end)
+
         conn
         |> Bolt.Sips.query!(
-            "MATCH (n:#{type}) 
-            return n")
+            """
+            CREATE (n:#{type}{#{props}})
+            RETURN n
+            """
+        )
         |> return_list()
+        |> case do
+            [] -> :error
+            [node] -> {:ok, node}
+        end
+    end
+
+    def get_nodes(conn, type) do
+        users = conn
+        |> Bolt.Sips.query!(
+            "MATCH (n:#{type}) 
+            RETURN n")
+        |> return_list()
+        {:ok, users}
     end
 
     defp return_list(return) when is_list(return) do
@@ -20,12 +41,12 @@ defmodule MeetApi.Repo do
         row_to_struct(node)
     end
 
-    def row_to_struct(node = %Bolt.Sips.Types.Node{labels: [type | _]}) do
-        repo_schema_module = type_to_repo_module(type)
-        repo_schema_module.row_to_struct(node)
+    defp row_to_struct(node = %Bolt.Sips.Types.Node{labels: [type | _]}) do
+        schema_module = type_to_repo_module(type)
+        schema_module.row_to_struct(node)
     end
 
-    def type_to_repo_module("User") do
-       MeetApi.Accounts.User
+    defp type_to_repo_module("User") do
+       Accounts.User
     end
 end

@@ -1,21 +1,9 @@
 defmodule MeetApi.Accounts do
-  @moduledoc """
-  The Accounts context.
-  """
-
   alias MeetApi.Repo
+  alias MeetApi.Accounts.User
 
-  @doc """
-  Returns the list of users.
-
-  ## Examples
-
-      iex> list_users()
-      [%User{}, ...]
-
-  """
   def list_users do
-      Repo.get_nodes(Bolt.Sips.conn, "User")
+    Repo.get_nodes(Bolt.Sips.conn, "User")
   end
  
   # @doc """
@@ -23,34 +11,21 @@ defmodule MeetApi.Accounts do
 
   # Raises `Ecto.NoResultsError` if the User does not exist.
 
-  # ## Examples
-
-  #     iex> get_user!(123)
-  #     %User{}
-
-  #     iex> get_user!(456)
-  #     ** (Ecto.NoResultsError)
-
   # """
   # def get_user!(id), do: Repo.get!(User, id)
 
-  # @doc """
-  # Creates a user.
-
-  # ## Examples
-
-  #     iex> create_user(%{field: value})
-  #     {:ok, %User{}}
-
-  #     iex> create_user(%{field: bad_value})
-  #     {:error, %Ecto.Changeset{}}
-
-  # """
-  # def create_user(attrs \\ %{}) do
-  #   %User{}
-  #   |> User.changeset(attrs)
-  #   |> Repo.insert()
-  # end
+  require Logger
+  def create_user(attrs \\ %{}) do
+    changeset = User.changeset(%User{}, attrs)
+    if changeset.valid? do
+      user = changeset 
+      |> Ecto.Changeset.apply_changes()
+      |> Map.take([:name, :lastname, :email, :password])
+      Repo.create_node(Bolt.Sips.conn, "User", user)
+    else
+      :error
+    end
+  end
 
   # @doc """
   # Updates a user.

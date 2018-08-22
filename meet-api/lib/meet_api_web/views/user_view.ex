@@ -13,8 +13,8 @@ defmodule MeetApiWeb.UserView do
   def render("user.json", %{user: user}) do
     %{id: user.id,
       email: user.email,
-      is_active: user.is_active,
       name: user.name,
-      lastname: user.lastname}
+      lastname: user.lastname,
+      password: user.password}
   end
 end
