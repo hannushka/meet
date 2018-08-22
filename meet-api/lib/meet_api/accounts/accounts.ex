@@ -2,8 +2,10 @@ defmodule MeetApi.Accounts do
   alias MeetApi.Repo
   alias MeetApi.Accounts.User
 
+  defmacro type, do: "User"
+
   def list_users do
-    Repo.get_nodes(Bolt.Sips.conn, "User")
+    Repo.get_nodes(Bolt.Sips.conn, type())
   end
  
   # @doc """
@@ -18,10 +20,8 @@ defmodule MeetApi.Accounts do
   def create_user(attrs \\ %{}) do
     changeset = User.changeset(%User{}, attrs)
     if changeset.valid? do
-      user = changeset 
-      |> Ecto.Changeset.apply_changes()
-      |> Map.take([:name, :lastname, :email, :password])
-      Repo.create_node(Bolt.Sips.conn, "User", user)
+      user = Ecto.Changeset.apply_changes(changeset)
+      Repo.create_node(Bolt.Sips.conn, type(), user)
     else
       :error
     end

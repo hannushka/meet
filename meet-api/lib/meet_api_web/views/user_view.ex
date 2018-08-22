@@ -14,7 +14,6 @@ defmodule MeetApiWeb.UserView do
     %{id: user.id,
       email: user.email,
       name: user.name,
-      lastname: user.lastname,
-      password: user.password}
+      lastname: user.lastname}
   end
 end

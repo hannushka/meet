@@ -1,11 +1,8 @@
 defmodule MeetApi.Repo do
     alias MeetApi.Accounts
 
-    def create_node(conn, type, props) do
-        props = props
-        |> Map.to_list()
-        |> Enum.map_join(", ", fn {key, value} -> "#{key}: '#{value}'" end)
-
+    def create_node(conn, type, struct) do
+        props = struct_to_props(struct)
         conn
         |> Bolt.Sips.query!(
             """
@@ -48,5 +45,12 @@ defmodule MeetApi.Repo do
 
     defp type_to_repo_module("User") do
        Accounts.User
+    end
+
+    defp struct_to_props(struct) do
+        struct
+        |> Map.drop([:__struct__, :__meta__])
+        |> Map.to_list()
+        |> Enum.map_join(", ", fn {key, value} -> "#{key}: '#{value}'" end)
     end
 end
