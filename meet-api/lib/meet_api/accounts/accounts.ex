@@ -8,15 +8,10 @@ defmodule MeetApi.Accounts do
     Repo.get_nodes(Bolt.Sips.conn, type())
   end
  
-  # @doc """
-  # Gets a single user.
+  def get_user(id) do
+    Repo.get_node(Bolt.Sips.conn, type(), id)
+  end
 
-  # Raises `Ecto.NoResultsError` if the User does not exist.
-
-  # """
-  # def get_user!(id), do: Repo.get!(User, id)
-
-  require Logger
   def create_user(attrs \\ %{}) do
     changeset = User.changeset(%User{}, attrs)
     if changeset.valid? do

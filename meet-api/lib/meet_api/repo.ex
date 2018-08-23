@@ -1,6 +1,15 @@
 defmodule MeetApi.Repo do
     alias MeetApi.Accounts
 
+    def get_nodes(conn, type) do
+        users = conn
+        |> Bolt.Sips.query!(
+            "MATCH (n:#{type})
+            RETURN n")
+        |> return_list()
+        {:ok, users}
+    end
+
     def create_node(conn, type, struct) do
         props = struct_to_props(struct)
         conn
@@ -17,13 +26,20 @@ defmodule MeetApi.Repo do
         end
     end
 
-    def get_nodes(conn, type) do
-        users = conn
+    def get_node(conn, type, id) do
+        conn
         |> Bolt.Sips.query!(
-            "MATCH (n:#{type}) 
-            RETURN n")
+            """
+            MATCH (n:#{type})
+            WHERE ID(n) = #{id}
+            RETURN n
+            """
+        )
         |> return_list()
-        {:ok, users}
+        |> case do
+            [] -> :error
+            [node] -> {:ok, node}
+        end
     end
 
     defp return_list(return) when is_list(return) do
