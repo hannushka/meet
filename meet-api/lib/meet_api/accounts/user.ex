@@ -9,7 +9,7 @@ defmodule MeetApi.Accounts.User do
         field :password, :string
     end 
 
-    def row_to_struct(node = %Bolt.Sips.Types.Node{id: id, labels: [type | _], properties: props}) do
+    def row_to_struct(%Bolt.Sips.Types.Node{id: id, labels: _, properties: props}) do
         props = Enum.map(props, fn {k, v} -> {String.to_atom(k), v} end)
         struct(__MODULE__, props ++ [id: id])
     end

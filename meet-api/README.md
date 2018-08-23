@@ -3,7 +3,7 @@
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
-  * Create and migrate your database (See how to set up Neo4j)
+  * Set up Neo4j database and edit `config/config.exs` with correct authentication settings
   * Start Phoenix endpoint with `mix phx.server`
 
 # How to set up Neo4j 

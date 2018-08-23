@@ -8,7 +8,8 @@ defmodule MeetApiWeb.UserController do
   def index(conn, _params) do
     with {:ok, users} <- Accounts.list_users() do
       conn
-      |> render("index.json", users: users)
+      |> put_status(:ok)
+      |> render(MeetApiWeb.UserView, "index.json", users: users)
     end
   end
 
@@ -17,13 +18,15 @@ defmodule MeetApiWeb.UserController do
       conn
       |> put_status(:created)
       |> put_resp_header("location", user_path(conn, :show, user))
-      |> render("show.json", user: user)
+      |> render(MeetApiWeb.UserView, "show.json", user: user)
     end
   end
 
   def show(conn, %{"id" => id}) do
     with {:ok, user} <- Accounts.get_user(id) do
-      render(conn, "show.json", user: user)
+      conn
+      |> put_status(:ok)
+      |> render(MeetApiWeb.UserView, "show.json", user: user)
     end
   end
 

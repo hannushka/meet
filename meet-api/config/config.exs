@@ -31,3 +31,24 @@ config :bolt_sips, Bolt,
   basic_auth: [username: "neo4j", password: "meet2018"],
   pool_size: 5,
   max_overflow: 1
+
+config :ueberauth, Ueberauth,
+  base_path: "/api/auth",
+  providers: [
+    identity: {Ueberauth.Strategy.Identity, [
+      callback_methods: ["POST"],
+      nickname_field: :email,
+      param_nesting: "user",
+      uid_field: :email
+    ]}
+  ]
+
+config :meet_api, MeetApi.Guardian,
+  issuer: "MeetApi",
+  secret_key: "use mix phx.gen.secret yo"
+
+# Configure the authentication plug pipeline
+config :meet_api, MeetApiWeb.Plugs.AuthAccessPipeline,
+  module: MeetApi.Guardian,
+  error_handler: MeetApiWeb.Plugs.AuthErrorHandler
+  

@@ -36,12 +36,15 @@ defmodule MeetApi.Mixfile do
       {:phoenix, "~> 1.3.3"},
       {:phoenix_pubsub, "~> 1.0"},
       {:phoenix_ecto, "~> 3.2"},
-      {:postgrex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:corsica, "~> 1.0"},
       {:bcrypt_elixir, "~> 1.0"},
-      {:bolt_sips, "~> 0.4.12"}
+      {:bolt_sips, "~> 0.4.12"},
+      {:ueberauth, "~> 0.5.0"},
+      {:ueberauth_identity, "~> 0.2.3"},
+      {:guardian, "~> 1.0"},
+      {:comeonin, "~> 4.1"}
     ]
   end
 

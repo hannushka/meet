@@ -15,10 +15,9 @@ defmodule MeetApi.Repo do
         conn
         |> Bolt.Sips.query!(
             """
-            CREATE (n:#{type}{#{props}})
+            CREATE (n:#{type}{#{props}, created_at: timestamp()})
             RETURN n
-            """
-        )
+            """)
         |> return_list()
         |> case do
             [] -> :error
@@ -26,15 +25,29 @@ defmodule MeetApi.Repo do
         end
     end
 
-    def get_node(conn, type, id) do
+    def get_node_from_id(conn, type, id) do
         conn
         |> Bolt.Sips.query!(
             """
             MATCH (n:#{type})
             WHERE ID(n) = #{id}
             RETURN n
+            """)
+        |> return_list()
+        |> case do
+            [] -> :error
+            [node] -> {:ok, node}
+        end
+    end
+
+    def get_node(conn, type, struct) do
+        props = struct_to_props(struct)
+        conn
+        |> Bolt.Sips.query!(
             """
-        )
+            MATCH (n:#{type}{#{props}})
+            RETURN n
+            """)
         |> return_list()
         |> case do
             [] -> :error

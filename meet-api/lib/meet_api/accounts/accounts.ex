@@ -9,7 +9,7 @@ defmodule MeetApi.Accounts do
   end
  
   def get_user(id) do
-    Repo.get_node(Bolt.Sips.conn, type(), id)
+    Repo.get_node_from_id(Bolt.Sips.conn, type(), id)
   end
 
   def create_user(attrs \\ %{}) do
@@ -17,6 +17,21 @@ defmodule MeetApi.Accounts do
     if changeset.valid? do
       user = Ecto.Changeset.apply_changes(changeset)
       Repo.create_node(Bolt.Sips.conn, type(), user)
+    else
+      {:error, "Invalid user"}
+    end
+  end
+
+  def authenticate_user(email, password) do
+    case Repo.get_node(Bolt.Sips.conn, type(), %{email: email}) do
+      {:ok, user} -> verify_password(user, password)
+      :error -> :error
+    end
+  end
+
+  defp verify_password(user, password) do
+    if Bcrypt.verify_pass(password, user.password) do
+      {:ok, user}
     else
       :error
     end
