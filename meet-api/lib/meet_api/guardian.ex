@@ -10,7 +10,7 @@ defmodule MeetApi.Guardian do
     end
 
     def resource_from_claims(%{"sub" => sub}) do
-        {:ok, MeetApi.Accounts.get_user(sub)}
+        {:ok, MeetApi.Accounts.get_user(Bolt.Sips.conn, sub)}
     end
 
     def resource_from_claims(_claims) do

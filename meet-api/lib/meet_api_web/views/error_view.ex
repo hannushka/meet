@@ -14,7 +14,7 @@ defmodule MeetApiWeb.ErrorView do
     %{errors: %{detail: Phoenix.Controller.status_message_from_template(template)}}
   end
 
-  def render("401.json", %{message: message}) do
-    %{errors: %{detail: message}}
+  def render("error.json", %{message: message}) do
+    %{error: message}
   end
 end

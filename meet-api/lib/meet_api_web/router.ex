@@ -11,13 +11,16 @@ defmodule MeetApiWeb.Router do
 
   scope "/api", MeetApiWeb do
     pipe_through :api
+    
+    post "/users", UserController, :create
 
     scope "/auth" do
-      post "/identity/callback", AuthenticationController, :identity_callback
+      post "/identity/callback", AuthController, :identity_callback
     end
 
     pipe_through :authenticated
 
-    resources "/users", UserController, except: [:new, :edit]
+    get "/users", UserController, :index
+    get "/users/:id", UserController, :show
   end
 end

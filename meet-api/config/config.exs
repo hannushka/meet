@@ -22,10 +22,6 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
-
 config :bolt_sips, Bolt,
   url: 'localhost:7687',
   basic_auth: [username: "neo4j", password: "meet2018"],
@@ -51,4 +47,7 @@ config :meet_api, MeetApi.Guardian,
 config :meet_api, MeetApiWeb.Plugs.AuthAccessPipeline,
   module: MeetApi.Guardian,
   error_handler: MeetApiWeb.Plugs.AuthErrorHandler
-  
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"
