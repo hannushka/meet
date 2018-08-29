@@ -9,3 +9,9 @@ config :meet_api, MeetApiWeb.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 config :bcrypt_elixir, :log_rounds, 4
+
+config :bolt_sips, Bolt,
+  url: 'localhost:7688',
+  basic_auth: [username: "neo4j", password: "meet2018"],
+  pool_size: 5,
+  max_overflow: 1

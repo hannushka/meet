@@ -62,3 +62,9 @@ config :logger, level: :info
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
 import_config "prod.secret.exs"
+
+config :bolt_sips, Bolt,
+  url: 'localhost:7687',
+  basic_auth: [username: "neo4j", password: "meet2018"],
+  pool_size: 5,
+  max_overflow: 1

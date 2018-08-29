@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+
+  neo4j:
+    image: neo4j
+    volumes:
+      - db-data:/var/lib/neo4j/data
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+
+  neo4j-test:
+    image: neo4j
+    volumes:
+      - db-test:/var/lib/neo4j/data-test
+    ports:
+      - "7475:7474"
+      - "7688:7687"
+    environment:
+      - NEO4J_dbms_connector_bolt_advertised__address=:7688
+
+volumes:
+  db-test:
+  db-data:
