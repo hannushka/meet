@@ -2,15 +2,25 @@
 
 Social media alternative. Work in progress.
 
-## Setup
-
 **meet/** contains the VueJS frontend \
 **meet-api/** contains the Phoenix API 
 
-Follow the instructions in the README documents in the respective folders to setup the environment.
+# Commands
 
-## Contribute
+docker-compose up -d
 
-* Read the Wiki: https://github.com/hannushka/meet/wiki
-* Trello board: https://trello.com/b/QG0Pc5gI/meet
-* Join Discord channel: https://discord.gg/8GPGwJP
+**Connect to database through shell:**
+
+docker exec -ti meet_neo4j_1 sh
+cypher-shell
+
+**Connect to database through browser:**
+
+Go to localhost:7474 in browser.
+
+On Windows:
+
+Run docker-machine ip to get docker ip.
+
+Go to http://<docker-machine ip>:<exposed port> in browser.
+Use bolt://192.168.99.100:7687 to connect to Bolt protocol.
