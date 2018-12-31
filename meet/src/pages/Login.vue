@@ -1,50 +1,41 @@
 <template>
-  <div class="wrapper">
-    <div class="title">
-      <span class="logo">MEET</span>
-      <span>Your new meeting ground.</span>
-    </div>
-    <div class="login-form">
-      <input v-model="message" placeholder="Email">
-      <input v-model="message" placeholder="Password">
+  <div id="wrapper">
+    <span id="logo">MEET</span>
+    <div id="form">
+      <input type="text" placeholder="Email">
+      <input type="password" placeholder="Password">
       <button>Log in</button>
-      <p>Need to sign up?</p>
     </div>
+    <router-link to="/sign-up">Need to sign up?</router-link>
   </div>
 </template>
 
 <script>
-/* export default {
-  name: 'Main',
-  data () {
-    return {
-      // msg: 'Welcome to Your Vue.js App'
-    }
-  }
-} */
 </script>
 
 <style scoped>
-  .wrapper {
+  #wrapper {
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    margin: 12em 0 0 4em;
+    justify-content: center;
   }
-  .title {
-    margin-bottom: 1em;
+  #wrapper * {
+    margin: 0 auto 2vh auto;
   }
-  .logo {
-    display: inline-block;
+  #logo {
     font-weight: bold;
-    font-size: 3em;
+    font-size: 6vh;
   }
-  input {
-    display: block;
-    margin-bottom: 1em;
-    width: 23em;
+  #form {
+    display: flex;
+    flex-direction: column;
+    width: 25vw;
+    min-width: 200px;
   }
-  p {
-    font-size: 0.9em;
-    margin-top: 1em;
+  #form * {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.5vh;
   }
 </style>

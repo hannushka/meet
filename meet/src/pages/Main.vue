@@ -5,20 +5,10 @@
 </template>
 
 <script>
-/* export default {
-  name: 'Main',
-  data () {
-    return {
-      // msg: 'Welcome to Your Vue.js App'
-    }
-  }
-} */
 </script>
 
 <style scoped>
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-    margin: 67em 0 0 54em;
-  }
+.wrapper {
+  margin: 5vh 5vw 0 5vw;
+}
 </style>

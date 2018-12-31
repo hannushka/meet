@@ -1,29 +1,48 @@
 <template>
   <div class="nav">
     <span class="logo">MEET</span>
-    <font-awesome-icon class="icon" icon="user-friends" />
-    <font-awesome-icon class="icon" icon="comments" />
-    <font-awesome-icon class="icon" icon="calendar" />
+    <font-awesome-icon icon="user-friends" style="margin-bottom: -0.1em;" />
+    <font-awesome-icon icon="comments" style="margin-bottom: -0.05em;" />
+    <font-awesome-icon icon="calendar" />
+    <img v-on:click="toggleShowPopUp" src="../assets/avatars/female-avatar.png">
+    <menu-pop-up v-if="showMenuPopUp" />
   </div>
 </template>
 
 <script>
+
+export default {
+  name: 'Navbar',
+  data: function () {
+    return {
+      showMenuPopUp: false
+    }
+  },
+  methods: {
+    toggleShowPopUp: function () {
+      this.showMenuPopUp = true
+    }
+  }
+}
 </script>
 
 <style scoped>
-  .nav {
-    align-items: flex-end;
-    margin-bottom: 40em;
-  }
-  span.logo {
-    display: inline-block;
-    font-weight: bold;
-    font-size: 32em;
-    margin-right: 8em;
-  }
-  svg {
-    display: inline-block;
-    font-size: 22em;
-    margin: 0 8em 0 8em;
-  }
+.nav {
+  display: flex;
+  align-items: flex-end;
+}
+span {
+  font-weight: bold;
+  font-size: 6vh;
+  line-height: 0.7em;
+  margin-right: 3vw;
+}
+svg {
+  font-size: 3.5vh;
+  margin-right: 3vw;
+}
+img {
+  margin-left: auto;
+  height: 7vh;
+}
 </style>

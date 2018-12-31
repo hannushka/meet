@@ -12,7 +12,16 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css?family=Roboto');
+* {
+  margin: 0;
+  padding: 0;
+}
 #app {
   font-family: 'Roboto', Helvetica, Arial, sans-serif;
+}
+a {
+  text-decoration: none;
+  color: black;
+  font-size: 1.25vh;
 }
 </style>
