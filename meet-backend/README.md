@@ -11,3 +11,7 @@ To start your Phoenix server:
 
 * Install neo4j community edition
 * Change password (default user 'neo4j' and password 'neo4j')
+
+# Problem with comeonin compile on Windows
+
+https://github.com/riverrun/comeonin/issues/75
