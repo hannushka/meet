@@ -7,13 +7,14 @@ defmodule MeetApi.Accounts do
   def list_users(bolt_sips_conn) do
     Repo.get_nodes(bolt_sips_conn, type())
   end
- 
+
   def get_user(bolt_sips_conn, id) do
     Repo.get_node_from_id(bolt_sips_conn, type(), id)
   end
 
   def create_user(bolt_sips_conn, attrs \\ %{}) do
     changeset = User.changeset(%User{}, attrs)
+
     if changeset.valid? do
       user = Ecto.Changeset.apply_changes(changeset)
       Repo.create_node(bolt_sips_conn, type(), user)

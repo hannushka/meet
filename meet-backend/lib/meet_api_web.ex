@@ -28,8 +28,9 @@ defmodule MeetApiWeb do
 
   def view do
     quote do
-      use Phoenix.View, root: "lib/meet_api_web/templates",
-                        namespace: MeetApiWeb
+      use Phoenix.View,
+        root: "lib/meet_api_web/templates",
+        namespace: MeetApiWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]

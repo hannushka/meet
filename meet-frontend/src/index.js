@@ -6,30 +6,28 @@ import './styles.css';
 
 function App() {
   return (
-    <div>
+    <div className="app">
       <h1>Hello World! :)</h1>
     </div>
   );
 }
 
-function NoMatch(_) {
+function NoMatch() {
   return (
-    <div>
-      <h3>Nothing to see here :(</h3>
+    <div className="app">
+      <h1>Nothing here :(</h1>
     </div>
   );
 }
 
 const Root = () => {
   return (
-    <div className="app">
-      <BrowserRouter>
-        <Switch>
-          <Route path="/" exact component={App} />
-          <Route path="" component={NoMatch} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={App} />
+        <Route path="" component={NoMatch} />
+      </Switch>
+    </BrowserRouter>
   );
 };
 

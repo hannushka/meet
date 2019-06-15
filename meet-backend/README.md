@@ -2,16 +2,28 @@
 
 To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Set up Neo4j
-  * Run `docker-compose up`
-  * Start Phoenix endpoint with `mix phx.server`
+- Install dependencies with `mix deps.get`
+- Run `docker-compose up`
+- Start Phoenix endpoint with `mix phx.server`
 
-# How to set up Neo4j 
-
-* Install neo4j community edition
-* Change password (default user 'neo4j' and password 'neo4j')
-
-# Problem with comeonin compile on Windows
+## Problem with comeonin compile on Windows
 
 https://github.com/riverrun/comeonin/issues/75
+
+## Connect to database through shell:
+
+```
+docker exec -ti meet_neo4j_1 sh
+cypher-shell
+```
+
+## Connect to database through browser:
+
+Go to localhost:7474 in browser.
+
+### On Windows:
+
+Run docker-machine ip to get docker ip.
+
+Go to http://docker-machine ip:exposed port in browser.
+Use bolt://192.168.99.100:7687 to connect to Bolt protocol.
