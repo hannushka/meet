@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: bolder;
+}
+
+.app-container {
+  width: 60%;
+  font-family: 'Roboto', sans-serif;
+  margin: 2.5% 5%;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:focus {
+  color: black;
+}
+
+a:hover {
+  color: #ede8e8;
+  cursor: pointer;
+}
+
+a:active {
+  color: black;
+}

@@ -1,16 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import './global.css';
 
-import './styles.css';
-
-function App() {
-  return (
-    <div className="app">
-      <h1>Hello World! :)</h1>
-    </div>
-  );
-}
+import { Nav, Sidebar } from './layout';
+import { Events } from './events';
 
 function NoMatch() {
   return (
@@ -22,12 +16,25 @@ function NoMatch() {
 
 const Root = () => {
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={App} />
-        <Route path="" component={NoMatch} />
-      </Switch>
-    </BrowserRouter>
+    <React.Fragment>
+      <div className="app-container">
+        <BrowserRouter>
+          <Switch>
+            <Route
+              path="/:id"
+              render={props => (
+                <div>
+                  <Nav {...props} />
+                  <Route path={`${props.match.url}/events`} component={Events} />
+                </div>
+              )}
+            />
+            <Route path="" component={NoMatch} />
+          </Switch>
+        </BrowserRouter>
+      </div>
+      <Sidebar />
+    </React.Fragment>
   );
 };
 

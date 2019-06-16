@@ -15,6 +15,7 @@ defmodule MeetApiWeb.Router do
     get("/ping", AuthController, :ping)
     post("/users", UserController, :create)
     get("/users", UserController, :index)
+    get("/users/:id", UserController, :show)
 
     scope "/auth" do
       post("/identity/callback", AuthController, :identity_callback)
@@ -22,6 +23,5 @@ defmodule MeetApiWeb.Router do
 
     pipe_through(:authenticated)
 
-    get("/users/:id", UserController, :show)
   end
 end
