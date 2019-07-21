@@ -15,7 +15,17 @@ config :meet_api, MeetApiWeb.Endpoint,
   secret_key_base: "g+PlS5EnS5g19kH/aNwghSJyWjtUHrNAlFncodpOUp6II2wbm+S6IYUiVkdIX8WA",
   render_errors: [view: MeetApiWeb.ErrorView, accepts: ~w(json)],
   pubsub: [name: MeetApi.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+           adapter: Phoenix.PubSub.PG2],
+  live_reload: [
+    patterns: [
+      ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg|json)$},
+      ~r{priv/gettext/.*(po)$},
+      ~r{lib/your_app_web/views/.*(ex)$},
+      ~r{lib/your_app_web/controllers/.*(ex)$},
+      ~r{lib/your_app_web/templates/.*(eex)$}
+    ]
+  ],
+  reloadable_compilers: [:gettext, :phoenix, :elixir, :phoenix_swagger]
 
 # Configures Elixir's Logger
 config :logger, :console,
@@ -48,6 +58,7 @@ config :meet_api, :phoenix_swagger,
 config :meet_api, MeetApiWeb.Plugs.AuthAccessPipeline,
   module: MeetApi.Guardian,
   error_handler: MeetApiWeb.Plugs.AuthErrorHandler
+ 
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

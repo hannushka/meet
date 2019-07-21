@@ -1,6 +1,88 @@
 {
   "swagger": "2.0",
   "paths": {
+    "/api/users/{id}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "required": true,
+            "name": "id",
+            "in": "path",
+            "description": "User id"
+          }
+        ],
+        "operationId": "MeetApiWeb.UserController.show",
+        "description": "Get user"
+      }
+    },
+    "/api/users": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "required": false,
+            "name": "user",
+            "in": "body",
+            "description": "user attributes"
+          }
+        ],
+        "operationId": "MeetApiWeb.UserController.create",
+        "description": "Create a user"
+      },
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Users"
+            },
+            "description": "OK"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [],
+        "operationId": "MeetApiWeb.UserController.index",
+        "description": "List all users"
+      }
+    },
     "/api/ping": {
       "get": {
         "tags": [
@@ -12,9 +94,44 @@
             "description": "Success"
           }
         },
+        "produces": [
+          "application/json"
+        ],
         "parameters": [],
         "operationId": "MeetApiWeb.AuthController.ping",
         "description": "Ping"
+      }
+    },
+    "/api/auth/identity/callback": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "",
+        "responses": {
+          "401": {
+            "description": "Unauthorized"
+          },
+          "200": {
+            "description": "Success"
+          }
+        },
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "schema": {
+              "$ref": "#/definitions/LoginCredentials"
+            },
+            "required": false,
+            "name": "user",
+            "in": "body",
+            "description": "Login credentials"
+          }
+        ],
+        "operationId": "MeetApiWeb.AuthController.identity_callback",
+        "description": "Get access token"
       }
     }
   },
@@ -22,5 +139,77 @@
     "version": "1.0",
     "title": "Meet Api"
   },
-  "definitions": {}
+  "definitions": {
+    "Users": {
+      "type": "array",
+      "title": "Users",
+      "items": {
+        "$ref": "#/definitions/User"
+      },
+      "description": "A collection of Users"
+    },
+    "User": {
+      "type": "object",
+      "title": "User",
+      "required": [
+        "password",
+        "lastname",
+        "name",
+        "email",
+        "id"
+      ],
+      "properties": {
+        "password": {
+          "type": "string",
+          "description": "Users password"
+        },
+        "name": {
+          "type": "string",
+          "description": "Users name"
+        },
+        "lastname": {
+          "type": "string",
+          "description": "Users lastname"
+        },
+        "id": {
+          "type": "string",
+          "description": "Unique identifier"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email"
+        }
+      },
+      "example": {
+        "password": "password",
+        "name": "Jane",
+        "lastname": "Doe",
+        "email": "janedoe@email.com"
+      },
+      "description": "A user of the application"
+    },
+    "LoginCredentials": {
+      "type": "object",
+      "title": "Login credentials",
+      "required": [
+        "password",
+        "email"
+      ],
+      "properties": {
+        "password": {
+          "type": "string",
+          "description": "Users password"
+        },
+        "email": {
+          "type": "string",
+          "description": "User's email"
+        }
+      },
+      "example": {
+        "password": "password",
+        "email": "janedoe@email.com"
+      },
+      "description": "Login credentials for a user of the application"
+    }
+  }
 }
