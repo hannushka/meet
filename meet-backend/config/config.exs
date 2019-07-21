@@ -37,6 +37,13 @@ config :meet_api, MeetApi.Guardian,
   issuer: "MeetApi",
   secret_key: "use mix phx.gen.secret yo"
 
+config :meet_api, :phoenix_swagger,
+  swagger_files: %{
+    "priv/static/swagger.json" => [
+      router: MeetApiWeb.Router
+    ]
+  }
+
 # Configure the authentication plug pipeline
 config :meet_api, MeetApiWeb.Plugs.AuthAccessPipeline,
   module: MeetApi.Guardian,

@@ -24,4 +24,17 @@ defmodule MeetApiWeb.Router do
     pipe_through(:authenticated)
 
   end
+
+  scope "/api/swagger" do
+    forward "/", PhoenixSwagger.Plug.SwaggerUI, otp_app: :meet_api, swagger_file: "swagger.json"
+  end
+
+  def swagger_info do
+    %{
+      info: %{
+        version: "1.0",
+        title: "Meet Api"
+      }
+    }
+  end
 end

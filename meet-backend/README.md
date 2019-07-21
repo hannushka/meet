@@ -1,10 +1,14 @@
-# MeetApi
+# Meet Api
 
 To start your Phoenix server:
 
 - Install dependencies with `mix deps.get`
 - Run `docker-compose up`
 - Start Phoenix endpoint with `mix phx.server`
+
+## Swagger
+
+Access swagger at `http://localhost:4000/api/swagger/`.
 
 ## Problem with comeonin compile on Windows
 
@@ -20,10 +24,3 @@ cypher-shell
 ## Connect to database through browser:
 
 Go to localhost:7474 in browser.
-
-### On Windows:
-
-Run docker-machine ip to get docker ip.
-
-Go to http://docker-machine ip:exposed port in browser.
-Use bolt://192.168.99.100:7687 to connect to Bolt protocol.

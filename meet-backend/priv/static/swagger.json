@@ -1,0 +1,26 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/api/ping": {
+      "get": {
+        "tags": [
+          "Auth"
+        ],
+        "summary": "",
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        },
+        "parameters": [],
+        "operationId": "MeetApiWeb.AuthController.ping",
+        "description": "Ping"
+      }
+    }
+  },
+  "info": {
+    "version": "1.0",
+    "title": "Meet Api"
+  },
+  "definitions": {}
+}

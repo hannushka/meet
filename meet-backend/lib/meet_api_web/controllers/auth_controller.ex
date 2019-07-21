@@ -1,5 +1,6 @@
 defmodule MeetApiWeb.AuthController do
   use MeetApiWeb, :controller
+  use PhoenixSwagger
 
   alias MeetApi.Accounts
 
@@ -25,6 +26,12 @@ defmodule MeetApiWeb.AuthController do
         |> put_status(401)
         |> json(%{message: "wrong email or password"})
     end
+  end
+
+  swagger_path :ping do
+    get "/api/ping"
+    description "Ping"
+    response 200, "Success"
   end
 
   def ping(conn, _params) do
