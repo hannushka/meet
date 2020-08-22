@@ -3,5 +3,5 @@
 React frontend, run with
 
 ```
-npm start
+yarn start
 ```

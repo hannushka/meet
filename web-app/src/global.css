@@ -1,0 +1,56 @@
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  src: url(./assets/fonts/manrope-thin.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'ManropeBold';
+  font-style: normal;
+  src: url(./assets/fonts/manrope-extrabold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'ManropeRegular';
+  font-style: normal;
+  src: url(./assets/fonts/manrope-regular.woff2) format('woff2');
+}
+
+html {
+  font-family: 'Manrope', sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 4rem;
+  font-family: 'ManropeBold', sans-serif;
+}
+
+.app-container {
+  margin: 4rem 8rem;
+}
+
+a {
+  outline: none;
+  text-decoration: none;
+}
+
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
+a:focus {
+  color: black;
+}
+
+a:active {
+  color: black;
+}

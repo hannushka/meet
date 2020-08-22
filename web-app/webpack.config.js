@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: './src/index.js',
+  entry: './src/App.js',
   mode: 'development',
   module: {
     rules: [
@@ -21,6 +21,10 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(jpe?g|gif|png|eot|woff|woff2|ttf|svg)$/,
+        loaders: ['url-loader']
       }
     ]
   },
