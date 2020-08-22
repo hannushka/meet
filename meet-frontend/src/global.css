@@ -1,4 +1,24 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@font-face {
+  font-family: 'Manrope';
+  font-style: normal;
+  src: url(./assets/fonts/manrope-thin.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'ManropeBold';
+  font-style: normal;
+  src: url(./assets/fonts/manrope-extrabold.woff2) format('woff2');
+}
+
+@font-face {
+  font-family: 'ManropeRegular';
+  font-style: normal;
+  src: url(./assets/fonts/manrope-regular.woff2) format('woff2');
+}
+
+html {
+  font-family: 'Manrope', sans-serif;
+}
 
 * {
   margin: 0;
@@ -6,14 +26,12 @@
 }
 
 h1 {
-  font-size: 5rem;
-  font-weight: bolder;
+  font-size: 4rem;
+  font-family: 'ManropeBold', sans-serif;
 }
 
 .app-container {
-  width: 60%;
-  font-family: 'Roboto', sans-serif;
-  margin: 2.5% 5%;
+  margin: 4rem 8rem;
 }
 
 a {
@@ -31,11 +49,6 @@ a:visited {
 
 a:focus {
   color: black;
-}
-
-a:hover {
-  color: #ede8e8;
-  cursor: pointer;
 }
 
 a:active {

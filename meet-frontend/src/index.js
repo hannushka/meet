@@ -2,39 +2,17 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './global.css';
-
-import { Nav, Sidebar } from './layout';
-import { Events } from './events';
-
-function NoMatch() {
-  return (
-    <div className="app">
-      <h1>Nothing here :(</h1>
-    </div>
-  );
-}
+import { Feed } from './containers/Feed';
 
 const Root = () => {
   return (
-    <React.Fragment>
-      <div className="app-container">
-        <BrowserRouter>
-          <Switch>
-            <Route
-              path="/:id"
-              render={props => (
-                <div>
-                  <Nav {...props} />
-                  <Route path={`${props.match.url}/events`} component={Events} />
-                </div>
-              )}
-            />
-            <Route path="" component={NoMatch} />
-          </Switch>
-        </BrowserRouter>
-      </div>
-      <Sidebar />
-    </React.Fragment>
+    <div className="app-container">
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" component={Feed} />
+        </Switch>
+      </BrowserRouter>
+    </div>
   );
 };
 
