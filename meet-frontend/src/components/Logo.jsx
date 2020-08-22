@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   position: relative;
   overflow: hidden;
   .logo {
+    cursor: pointer;
     font-size: 4rem;
     font-family: 'ManropeBold', sans-serif;
     width: fit-content;
@@ -13,9 +14,9 @@ const Wrapper = styled.div`
     transform: translateY(6rem);
     animation: up 500ms linear forwards;
     z-index: 1;
-    border-bottom: 1rem solid black;
+    border-bottom: 0.5rem solid black;
     .meet {
-      margin-bottom: -0.5rem;
+      margin-bottom: -1rem;
       display: block;
     }
     &::before,
@@ -47,7 +48,9 @@ export function Logo(props) {
   return (
     <Wrapper className="title-container">
       <div className="logo">
-        <span className="meet">Meet</span>
+        <a href="/" className="meet">
+          Meet
+        </a>
       </div>
     </Wrapper>
   );
