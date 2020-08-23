@@ -38,6 +38,6 @@ config :phoenix, :stacktrace_depth, 20
 
 config :bolt_sips, Bolt,
   url: 'localhost:7687',
-  basic_auth: [username: "neo4j", password: "meet2019"],
+  basic_auth: [username: "neo4j", password: "meet"],
   pool_size: 5,
   max_overflow: 1

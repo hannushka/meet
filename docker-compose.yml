@@ -2,27 +2,11 @@ version: "3"
 
 services:
   phoenix:
-    image: meet-api
-    environment:
-      PGUSER: postgres
-      PGPASSWORD: postgres
-      PGDATABASE: database_name
-      PGPORT: 5432
-      PGHOST: postgres
+    build: .
+    volumes:
+      - ./api:/app
     ports:
       - "4000:4000"
-    depends_on:
-      - postgres
-  postgres:
-    image: postgres:9.6
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      # Set a path where Postgres should store the data
-      PGDATA: /var/lib/postgresql/data/pgdata
-    restart: always
-    volumes:
-      - pgdata:/var/lib/postgresql/data
   neo4j:
     image: neo4j:latest
     network_mode: "bridge"
@@ -35,17 +19,5 @@ services:
       - NEO4J_dbms_shell_enabled=true
     volumes:
       - neo4jdata:/data
-  # neo4j-test-db:
-  #   image: neo4j
-  #   volumes:
-  #     - neo4jtest:/var/lib/neo4j/data-test
-  #   ports:
-  #     - "7475:7474"
-  #     - "7688:7687"
-  #   environment:
-  #     - NEO4J_dbms_connector_bolt_advertised__address=:7688
-
 volumes:
   neo4jdata:
-  pgdata:
-  # neo4jtest:

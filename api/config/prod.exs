@@ -65,6 +65,6 @@ import_config "prod.secret.exs"
 
 config :bolt_sips, Bolt,
   url: 'localhost:7687',
-  basic_auth: [username: "neo4j", password: "meet2018"],
+  basic_auth: [username: "neo4j", password: "meet"],
   pool_size: 5,
   max_overflow: 1

@@ -12,6 +12,6 @@ config :bcrypt_elixir, :log_rounds, 4
 
 config :bolt_sips, Bolt,
   url: 'localhost:7688',
-  basic_auth: [username: "neo4j", password: "meet2018"],
+  basic_auth: [username: "neo4j", password: "meet"],
   pool_size: 5,
   max_overflow: 1

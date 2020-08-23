@@ -8,6 +8,8 @@ Work in progress.
 
 ### Set up
 
-`docker build -t meet-api .`
+`docker-compose build`
+
+`alias mix="docker-compose run --rm phoenix mix"`
 
 `docker-compose up`
